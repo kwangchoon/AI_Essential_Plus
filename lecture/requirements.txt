@@ -1,0 +1,22 @@
+
+# CONDA_PKGS_DIRS=$HOME/.conda/pkgs /opt/conda/bin/conda create -n sam python=3.12 -y
+
+# Pinned from /opt/conda/envs/sam on 2026-03-13
+
+# day1 LLM / agent stack
+openai==2.24.0
+pydantic==2.12.5
+pandas==3.0.1
+numpy==2.2.6
+
+langchain==1.2.12
+langchain-openai==1.1.11
+langgraph==1.1.1
+langchain-core==1.2.18
+langchain-experimental==0.4.1
+langchain-text-splitters==1.1.1
+langchain-community==0.4.1
+langchain-classic==1.0.2
+chromadb==1.5.5
+rank-bm25==0.2.2
+
