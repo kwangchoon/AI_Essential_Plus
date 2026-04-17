@@ -1,0 +1,27 @@
+[
+  {
+    "id": "scenario-1",
+    "input": "세탁기 5C 에러가 떠요. 원격진단하고 조치 알려줘",
+    "expected_intent": "troubleshooting"
+  },
+  {
+    "id": "scenario-2",
+    "input": "로봇청소기 흡입이 약해요. 필터 점검 순서 알려줘",
+    "expected_intent": "troubleshooting"
+  },
+  {
+    "id": "scenario-3",
+    "input": "앱 연결이 안 돼요. 와이파이 다시 붙이는 방법 알려줘",
+    "expected_intent": "manual_info"
+  },
+  {
+    "id": "scenario-4",
+    "input": "에어컨 펌웨어 업데이트 해줘",
+    "expected_intent": "device_control"
+  },
+  {
+    "id": "scenario-5",
+    "input": "탄 냄새랑 과열이 느껴져요",
+    "expected_intent": "handoff"
+  }
+]

@@ -1,0 +1,11 @@
+image_path,label,confidence,recommendation
+/home/user/lecture/mini_project_skeleton/vision/data/images/val/clean/clean_00.png,clean,0.9721,필터 상태가 양호합니다. 정기 점검만 유지하세요.
+/home/user/lecture/mini_project_skeleton/vision/data/images/val/clean/clean_01.png,clean,0.972,필터 상태가 양호합니다. 정기 점검만 유지하세요.
+/home/user/lecture/mini_project_skeleton/vision/data/images/val/clean/clean_02.png,clean,0.9711,필터 상태가 양호합니다. 정기 점검만 유지하세요.
+/home/user/lecture/mini_project_skeleton/vision/data/images/val/clean/clean_03.png,clean,0.9747,필터 상태가 양호합니다. 정기 점검만 유지하세요.
+/home/user/lecture/mini_project_skeleton/vision/data/images/val/clean/clean_04.png,clean,0.9735,필터 상태가 양호합니다. 정기 점검만 유지하세요.
+/home/user/lecture/mini_project_skeleton/vision/data/images/val/dirty/dirty_00.png,dirty,0.8958,필터 오염 가능성이 높습니다. 청소 또는 교체를 권장합니다.
+/home/user/lecture/mini_project_skeleton/vision/data/images/val/dirty/dirty_01.png,dirty,0.8903,필터 오염 가능성이 높습니다. 청소 또는 교체를 권장합니다.
+/home/user/lecture/mini_project_skeleton/vision/data/images/val/dirty/dirty_02.png,dirty,0.8909,필터 오염 가능성이 높습니다. 청소 또는 교체를 권장합니다.
+/home/user/lecture/mini_project_skeleton/vision/data/images/val/dirty/dirty_03.png,dirty,0.89,필터 오염 가능성이 높습니다. 청소 또는 교체를 권장합니다.
+/home/user/lecture/mini_project_skeleton/vision/data/images/val/dirty/dirty_04.png,dirty,0.895,필터 오염 가능성이 높습니다. 청소 또는 교체를 권장합니다.

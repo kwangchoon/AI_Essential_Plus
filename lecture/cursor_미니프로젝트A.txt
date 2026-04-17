@@ -1,0 +1,41 @@
+다음과 같은 미니프로젝트 A)를 수행하려고 합니다.
+
+미니프로젝트 A) 제품 탑재형 Agent: SmartHome Care Copilot
+주제
+스마트 생활가전/로봇(예: 로봇청소기·세탁기·에어컨)용 탑재형 고객지원/원격진단 에이전트 → 사용자 요청을 받아 매뉴얼 RAG + 원격진단(tool) + 위험 작업 확인(confirm) + 티켓 생성까지 처리.
+목표
+•	Router(의도 분류) → Structured Output(JSON) → Tool calling loop → RAG → Handoff를 end-to-end로 구현
+•	제품 탑재형 핵심 요구를 포함:
+o	위험 작업 confirm 2턴(초기화/펌웨어 업데이트)
+o	권한(roles) 기반 툴 접근(customer/support/admin)
+o	NO_HIT 시 추가 질문(모델/증상/에러코드 등)
+권장 Task 시나리오(5개)
+1.	“세탁기 5C 에러가 떠요” → 매뉴얼 근거 + 원격진단 + 조치
+2.	“로봇청소기 흡입이 약해요(필터?)” → 매뉴얼 근거 + 점검 체크리스트
+3.	“앱 연결이 안 돼요(Wi-Fi)” → remote 매뉴얼 근거 + 네트워크 점검
+4.	“펌웨어 업데이트 해줘” → confirm 질문 → confirmed=true일 때만 실행
+5.	“탄 냄새/과열 같아요” → safety_risk → 즉시 중지/전원 차단/AS 안내(handoff)
+필수 산출물
+•	demo.ipynb 또는 app.py (CLI/간단 UI 가능)
+•	더미 tool 4개 이상 (아래 예시 중 선택)
+o	get_device_status(device_id)
+o	get_recent_events(device_id)
+o	run_remote_diagnosis(device_id)
+o	set_device_setting(device_id, setting, value)
+o	create_service_ticket(payload)
+•	매뉴얼 문서 3종 이상 + RAG(출처 태그 강제)
+o	manual_washer.txt, manual_vacuum.txt, manual_remote.txt 등
+•	구조화 출력 스키마 1개 이상(예: SupportReport)
+러프 가이드(진행 순서)
+1.	스키마 먼저: DeviceActionPlan / SupportReport Pydantic 정의
+2.	툴부터 설계: 입력/출력 JSON 스펙 확정(에러도 설계)
+3.	RAG 구축: 더미 매뉴얼 작성 → search_manual(query, device_type) 구현
+4.	Graph/루프: 라우팅 + tool loop + confirm 노드(상태에 pending_action 저장)
+5.	가드레일: role/confirmed 없으면 위험 tool 호출 불가
+6.	테스트: 위 5개 시나리오로 시연 로그 남기기
+
+project1_agent 디렉토리에 코드를 작성하고
+GUIDE.md 와 Project1_SmartHome_Care_Copilot_Skeleton.ipynb 를 참고하여 
+demo.ipynb 을 작성해줘
+환경은 requirements.txt를 사용하는데 
+project1_agent 디렉토리에 .venv 가상환경을 사용하여 작성을 부탁해

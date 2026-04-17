@@ -1,0 +1,10 @@
+date,region,device_type,fw,power_w,bump_events,error_code
+2026-03-01,Seoul,robot_vacuum,1.2.0,214.5,12,
+2026-03-01,Busan,robot_vacuum,1.2.0,201.1,15,BUMP_STUCK
+2026-03-01,Daejeon,washing_machine,2.1.7,398.2,0,5C
+2026-03-02,Seoul,washing_machine,2.1.7,402.3,0,5C
+2026-03-02,Busan,air_conditioner,3.5.1,684.2,0,
+2026-03-02,Daejeon,air_conditioner,3.5.2,650.4,0,E2
+2026-03-03,Seoul,robot_vacuum,1.2.1,198.7,4,
+2026-03-03,Busan,washing_machine,2.1.5,377.1,0,
+2026-03-03,Daejeon,air_conditioner,3.5.2,620.5,0,

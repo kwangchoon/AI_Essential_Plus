@@ -1,0 +1,36 @@
+{
+  "DEV-1001": {
+    "device_type": "robot_vacuum",
+    "model": "RobotVacuum-X",
+    "status": "docked",
+    "battery": 0.78,
+    "mode": "idle",
+    "fw": "1.2.0",
+    "suction_health": "low"
+  },
+  "DEV-2002": {
+    "device_type": "washing_machine",
+    "model": "Washer-A",
+    "status": "online",
+    "mode": "standby",
+    "fw": "2.1.7",
+    "last_error": "5C"
+  },
+  "DEV-3003": {
+    "device_type": "air_conditioner",
+    "model": "AirCon-Pro",
+    "status": "online",
+    "mode": "cool",
+    "target_temp_c": 24,
+    "fw": "3.5.1",
+    "filter_warning": true
+  },
+  "DEV-4004": {
+    "device_type": "remote_hub",
+    "model": "Hub-Connect",
+    "status": "online",
+    "wifi_status": "disconnected",
+    "fw": "0.9.8",
+    "paired_devices": 3
+  }
+}

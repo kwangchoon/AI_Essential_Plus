@@ -1,0 +1,286 @@
+Q1.
+객관식(단일선택)|배점 : 10점
+다음 코드는 few-shot 예시를 메시지로 누적한 뒤 마지막에 사용자 질문을 붙인다. 출력으로 가장 알맞은 것은?
+
+examples = [
+    ("Q: reset 방법?", "A: 설정 > 일반 > 초기화"),
+    ("Q: 와이파이 연결?", "A: 설정 > 네트워크"),
+]
+
+def build(user_q):
+    msgs = [{"role": "system", "content": "너는 제품 지원 봇"}]
+    for q, a in examples:
+        msgs += [{"role": "user", "content": q},
+                 {"role": "assistant", "content": a}]
+    msgs.append({"role": "user", "content": f"Q: {user_q}"})
+    return msgs
+
+print(len(build("HDMI 입력 전환?")), build("HDMI 입력 전환?")[-1]["content"])
+A.
+1
+7 Q: HDMI 입력 전환?
+2
+6 Q: HDMI 입력 전환?
+3
+6 HDMI 입력 전환?
+4
+5 Q: HDMI 입력 전환?
+
+Q2.
+객관식(단일선택)|배점 : 10점
+다음 코드 출력으로 가장 알맞은 것은?
+
+
+d_in, d_out, r = 4096, 4096, 8
+
+# LoRA는 일반적으로 A: (r, d_in), B: (d_out, r) 추가 학습
+lora_params = r * (d_in + d_out)
+full_params = d_out * d_in
+ratio = lora_params / full_params
+
+print(lora_params, full_params, round(ratio, 4))
+A.
+1
+65536 33554432 0.0020
+2
+131072 16777216 0.0078
+3
+65536 16777216 0.0390
+4
+65536 16777216 0.0039
+
+Q3.
+객관식(단일선택)|배점 : 10점
+다음 라우터의 출력으로 가장 알맞은 것은?
+
+def route(task: str):
+    if ("설명서" in task) or ("문서" in task):
+        return "retriever"
+    if any(k in task for k in ["코드", "구현", "리팩토링"]):
+        return "coder"
+    if ("테스트" in task) or ("버그" in task):
+        return "tester"
+    return "general"
+
+print(route("버그 수정 후 테스트 코드 추가"))
+A.
+1
+tester
+2
+coder
+3
+planner
+4
+retriever
+
+Q4.
+객관식(단일선택)|배점 : 10점
+다음 코드가 출력하는 리스트에서 인덱스 2(세 번째 원소) 는 무엇인가?
+
+from collections import deque
+
+def a2a_run():
+    q = deque([("planner", "요구사항 분석"), ("executor", "도구 실행")])
+    log = []
+    while q:
+        agent, msg = q.popleft()
+        log.append(f"{agent}:{msg}")
+
+        if agent == "planner":
+            q.append(("executor", "검색 수행"))
+        elif agent == "executor" and "검색" in msg:
+            q.append(("writer", "응답 생성"))
+    return log
+
+print(a2a_run())
+A.
+1
+planner:요구사항 분석
+2
+executor:도구 실행
+3
+executor:검색 수행
+4
+writer:응답 생성
+
+Q5.
+객관식(단일선택)|배점 : 10점
+다음 코드 출력으로 알맞은 것은? (단순화한 것임으로, 가중치만 고려)
+
+params = 1_200_000  # 1.2M parameters
+bytes_per = {"fp16": 2, "int8": 1, "int4": 0.5}  # int4는 2개/byte 근사
+
+sizes_mb = {k: params * v / 1024 / 1024 for k, v in bytes_per.items()}
+best = min(sizes_mb, key=sizes_mb.get)
+
+print(best, round(sizes_mb[best], 3))
+A.
+1
+int8 1.144
+2
+fp16 2.289
+3
+int4 1.144
+4
+int4 0.572
+
+Q6.
+객관식(단일선택)|배점 : 10점
+아래는 “draft 토큰을 target 모델이 검증하다가 기준(threshold) 미만이면 리샘플로 전환”하는 단순화 코드이다. 출력으로 알맞은 것은?
+
+draft = ["안", "녕", "!"]
+target_p = [0.8, 0.4, 0.9]
+threshold = 0.5
+
+out = []
+for tok, p in zip(draft, target_p):
+    if p < threshold:
+        out.append("<resample>")
+        break
+    out.append(tok)
+
+print(out)
+A.
+1
+['안', '<resample>']
+2
+['안', '녕', '!']
+3
+['<resample>']
+4
+[]
+
+Q7.
+객관식(단일선택)|배점 : 10점
+다음은 Embedding 점수 상위 2개를 후보로 뽑은 뒤, 단순 overlap reranker로 재정렬하는 코드이다. 최종 선택 문서는?
+
+query = "hdmi 입력"
+docs = {
+    "D1": ("hdmi 설정 메뉴", 0.62),
+    "D2": ("wifi 연결 방법", 0.70),
+    "D3": ("hdmi 입력 전환", 0.60),
+}
+
+top_k = 2
+cands = sorted(docs.items(), key=lambda x: x[1][1], reverse=True)[:top_k]
+
+q_tokens = set(query.split())
+def overlap(text: str):
+    return len(q_tokens & set(text.split()))
+
+reranked = sorted(cands, key=lambda x: overlap(x[1][0]), reverse=True)
+print([d for d, _ in cands], "->", [d for d, _ in reranked][0])
+A.
+1
+D2
+2
+후보 2개가 아니라 3개 모두 재정렬됨
+3
+D1
+4
+D3
+
+Q8.
+객관식(단일선택)|배점 : 10점
+다음 코드에서 top으로 선택되는 문서 ID는?
+
+import math
+
+docs = {
+    "A": [1, 0],
+    "B": [0, 1],
+    "C": [1, 1],
+}
+q = [1, 0.2]
+
+def cos(u, v):
+    dot = sum(a*b for a, b in zip(u, v))
+    nu = math.sqrt(sum(a*a for a in u))
+    nv = math.sqrt(sum(b*b for b in v))
+    return dot / (nu * nv)
+
+scores = {k: round(cos(vec, q), 3) for k, vec in docs.items()}
+top = max(scores, key=scores.get)
+print(scores, top)
+A.
+1
+B
+2
+동률이라 결정 불가
+3
+A
+4
+C
+
+Q9.
+객관식(단일선택)|배점 : 10점
+다음 코드의 출력으로 가장 알맞은 것은?
+
+TOOLS = {
+    "calc": lambda x: eval(x),
+    "search": lambda q: f"검색:{q.split()[0]}",
+}
+
+def agent(user_msg: str):
+    if user_msg.startswith("계산:"):
+        tool, arg = "calc", user_msg.replace("계산:", "").strip()
+    elif ("찾아" in user_msg) or ("검색" in user_msg):
+        tool, arg = "search", user_msg.replace("검색", "").strip()
+    else:
+        return "LLM_ONLY"
+    return f"{tool} -> {TOOLS[tool](arg)}"
+
+print(agent("계산: 2**3 + 1"))
+A.
+1
+calc -> 8
+2
+LLM_ONLY
+3
+calc -> 9
+4
+search -> 검색:2**3
+
+Q10.
+객관식(단일선택)|배점 : 10점
+다음 min_p 필터(= p >= min_p * p_max) 적용 후 kept 출력으로 알맞은 것은?
+
+probs = {"A": 0.40, "B": 0.25, "C": 0.20, "D": 0.10, "E": 0.05}
+min_p = 0.5
+
+p_max = max(probs.values())
+kept = [t for t, p in probs.items() if p >= min_p * p_max]
+
+print(kept)
+A.
+1
+['A', 'B', 'C', 'D']
+2
+['A', 'B', 'C']
+3
+['A', 'B']
+4
+['A']
+
+
+요청하신 문제들의 정답 번호입니다.
+
+Q1: 2
+
+Q2: 4
+
+Q3: 2
+
+Q4: 3
+
+Q5: 4
+
+Q6: 1
+
+Q7: 3
+
+Q8: 3
+
+Q9: 3
+
+Q10: 2

@@ -1,0 +1,65 @@
+{
+  "DEV-1001": [
+    {
+      "ts": "2026-03-13T08:12:03Z",
+      "level": "INFO",
+      "message": "docked=true battery=0.78"
+    },
+    {
+      "ts": "2026-03-13T08:15:44Z",
+      "level": "WARN",
+      "message": "bump_detected count=12 room=living_room"
+    },
+    {
+      "ts": "2026-03-13T08:17:01Z",
+      "level": "WARN",
+      "message": "suction=low filter_hours=188"
+    }
+  ],
+  "DEV-2002": [
+    {
+      "ts": "2026-03-13T07:40:00Z",
+      "level": "INFO",
+      "message": "program=quick start"
+    },
+    {
+      "ts": "2026-03-13T07:52:12Z",
+      "level": "ERROR",
+      "message": "code=5C drain_timeout=true"
+    },
+    {
+      "ts": "2026-03-13T07:52:13Z",
+      "level": "INFO",
+      "message": "stopped=true water_level=mid"
+    }
+  ],
+  "DEV-3003": [
+    {
+      "ts": "2026-03-13T09:01:00Z",
+      "level": "INFO",
+      "message": "mode=cool target_temp=24"
+    },
+    {
+      "ts": "2026-03-13T09:05:10Z",
+      "level": "INFO",
+      "message": "power_w=680 humidity=0.55"
+    },
+    {
+      "ts": "2026-03-13T09:07:33Z",
+      "level": "WARN",
+      "message": "filter_warning=true"
+    }
+  ],
+  "DEV-4004": [
+    {
+      "ts": "2026-03-13T10:10:00Z",
+      "level": "WARN",
+      "message": "wifi_status=disconnected ssid_missing=true"
+    },
+    {
+      "ts": "2026-03-13T10:14:00Z",
+      "level": "INFO",
+      "message": "last_pairing_attempt=failed band=5ghz"
+    }
+  ]
+}
